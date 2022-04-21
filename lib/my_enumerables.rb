@@ -30,6 +30,26 @@ module Enumerable
     end
     matches == self.length
   end
+
+  def my_any?
+    return unless block_given?
+
+    matches = 0
+    self.my_each do |element|
+      matches += 1 if yield(element)
+    end
+    matches.positive?
+  end
+
+  def my_none?
+    return unless block_given?
+
+    matches = 0
+    self.my_each do |element|
+      matches += 1 if yield(element)
+    end
+    matches == 0
+  end
 end
 
 # You will first have to define my_each
