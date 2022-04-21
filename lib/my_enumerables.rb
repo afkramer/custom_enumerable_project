@@ -21,34 +21,22 @@ module Enumerable
     selected
   end
 
-  def my_all?
+  def my_all?(&block)
     return unless block_given?
 
-    matches = 0
-    self.my_each do |element|
-      matches += 1 if yield(element)
-    end
-    matches == self.length
+    number_matches(block) == self.length
   end
 
-  def my_any?
+  def my_any?(&block)
     return unless block_given?
 
-    matches = 0
-    self.my_each do |element|
-      matches += 1 if yield(element)
-    end
-    matches.positive?
+    number_matches(block).positive?
   end
 
-  def my_none?
+  def my_none?(&block)
     return unless block_given?
 
-    matches = 0
-    self.my_each do |element|
-      matches += 1 if yield(element)
-    end
-    matches == 0
+    number_matches(block).zero?
   end
 
   def my_count(&block)
