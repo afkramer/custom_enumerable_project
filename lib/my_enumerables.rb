@@ -20,6 +20,16 @@ module Enumerable
       selected
     end
   end
+
+  def my_all?
+    return unless block_given?
+
+    matches = 0
+    self.my_each do |element|
+      matches += 1 if yield(element)
+    end
+    matches == self.length
+  end
 end
 
 # You will first have to define my_each
