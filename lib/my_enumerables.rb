@@ -2,7 +2,6 @@ module Enumerable
   # Your code goes here
   def my_each_with_index
     if block_given?
-      # Figure out how to pass the element and index to the block
       i = 0
       self.my_each do |element|
         yield element, i
@@ -10,6 +9,16 @@ module Enumerable
       end
     end
     self
+  end
+
+  def my_select
+    if block_given?
+      selected = []
+      self.my_each do |element|
+        selected << element if yield(element)
+      end
+      selected
+    end
   end
 end
 
