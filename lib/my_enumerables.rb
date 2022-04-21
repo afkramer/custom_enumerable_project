@@ -50,6 +50,22 @@ module Enumerable
     end
     matches == 0
   end
+
+  def my_count(&block)
+    if block_given?
+      number_matches(block)
+    else
+      self.length
+    end
+  end
+
+  def number_matches(block)
+    matches = 0
+    self.my_each do |element|
+      matches += 1 if block.call(element)
+    end
+    matches
+  end
 end
 
 # You will first have to define my_each
