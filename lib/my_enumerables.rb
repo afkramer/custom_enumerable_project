@@ -1,24 +1,24 @@
 module Enumerable
   # Your code goes here
   def my_each_with_index
-    if block_given?
-      i = 0
-      self.my_each do |element|
-        yield element, i
-        i += 1
-      end
+    return self unless block_given?
+
+    i = 0
+    self.my_each do |element|
+      yield element, i
+      i += 1
     end
     self
   end
 
   def my_select
-    if block_given?
-      selected = []
-      self.my_each do |element|
-        selected << element if yield(element)
-      end
-      selected
+    return unless block_given?
+
+    selected = []
+    self.my_each do |element|
+      selected << element if yield(element)
     end
+    selected
   end
 
   def my_all?
