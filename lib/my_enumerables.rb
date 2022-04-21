@@ -64,6 +64,15 @@ module Enumerable
     end
     arr
   end
+
+  def my_inject(accumulator = 0, &block)
+    return unless block_given?
+
+    self.my_each do |element|
+      accumulator = block.call(accumulator, element)
+    end
+    accumulator
+  end
 end
 
 # You will first have to define my_each
