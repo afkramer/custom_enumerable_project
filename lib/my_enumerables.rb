@@ -54,6 +54,16 @@ module Enumerable
     end
     matches
   end
+
+  def my_map(&block)
+    return unless block_given?
+
+    arr = []
+    self.my_each do |element|
+      arr << block.call(element)
+    end
+    arr
+  end
 end
 
 # You will first have to define my_each
